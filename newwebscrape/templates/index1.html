@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body
+      {
+        background-image:url( {{url_for('static',filename='people_photo/bgpback12.jpg')}});
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        
+      }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+<center>
+<article>
+  <header>
+   
+    <img src="{{ user_image }}" alt="IIIT Bhagalpur" style="width:150px;height:150px;">
+    <h1 style="color:Tomato;">IIIT Bhagalpur Flood Alert Portal</h1>
+    
+
+    
+
+      <p></p>
+  </header>
+  <p></p>
+</article>
+<body> 
+ 
+<hr>
+ <marquee behavior="scroll" direction="left"><big><b><font color="crimson">Present Water Level= {{ variable }}</b></big> </marquee>
+ <marquee behavior="scroll" direction="left"><big><b><font color="orange">Warning Level= 32.68</b></big> </marquee>
+<marquee behavior="scroll" direction="left"><big><b><font color="red">Danger Level= 33.68 </b></big> </marquee>
+<marquee behavior="scroll" direction="left"><big><b><font color="brown">Highest Flood Level=34.72</b></big></marquee>
+<hr>
+<p align="left">
+<big><b><font color="purple">Note: Present Water Level={{ variable }}</b></big>
+</p>
+<p align="left">
+<big><b>Dear Students, </b></big>
+</p>
+<p align="left">
+<big><b>The prsent Ganaga river water level is {{ variable }} there fore which is not in warning level, therefore no need   worry</b></big>
+</p>
+<p><h1 align="center">Students please upload photos of any issue if you have any</h1></p>
+<div class="container">
+<div class="row">
+    <h2>Select a file to upload</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+    {% endif %}
+    <form method="post" action="/" enctype="multipart/form-data">       
+            <input type="file" name="file" class="form-control" autocomplete="off" required>
+            <input type="submit" value="Submit" class="btn btn-info">   
+    </form>
+</div>
+</div>
+<a href="/chat1">chat</a>
+
+  </body>
+  </html>
