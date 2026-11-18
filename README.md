@@ -22,22 +22,6 @@ This portal serves as an integrated communication and alert dashboard to:
 
 ---
 
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    A["Official Hydrological Source / Web Page"] -->|"HTML Scraping (BeautifulSoup4)"| B["Flask Web Server (app2.py)"]
-    B -->|"Evaluate Thresholds"| C{"Water Level Monitor"}
-    
-    C -->|"Normal / Safe"| D["Normal Advisory Message"]
-    C -->|"Warning (>= 32.68m)"| E["Orange Alert Notification"]
-    C -->|"Danger (>= 33.68m)"| F["Red Alert Evacuation Warning"]
-    
-    B --> G["Student Incident Upload Portal (/index1)"]
-    G -->|"Save Evidence"| H["static/people_photo/"]
-    
-    B <-->|"Socket.IO Events"| I["Real-Time Campus Chatroom (/chat1)"]
-```
 
 ---
 
